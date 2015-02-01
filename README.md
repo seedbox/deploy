@@ -102,6 +102,7 @@ I've tested the installer pretty heavily, but here are some issues that might co
 - After installation, couchpotato might not have started. You can start it manually from your server's homepage
 - If sickrage gives you a 'gateway error' after installation, just restart it manually from your server's homepage
 - If your VPS randomly shuts down during installation, just reboot it and run the command again. (rare, sometimes happened to me on cheap VPS's)
+- If you can't access anything from the web after installation, you might need to start nginx manually by running `service nginx restart` (also rare)
 
 
 
