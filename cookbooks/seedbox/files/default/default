@@ -1,0 +1,143 @@
+# REDIRECT HTTP -> HTTPS
+server {
+    listen 80;
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+
+# DISPATCHER
+server {
+    listen 443;
+
+    include ssl.conf;
+    include favicons.conf;
+
+    location /downloads {
+        include auth.conf;
+        return 301 https://$host:4000;
+    }
+
+    location /movies {
+        include auth.conf;
+        return 301 https://$host:4001;
+    }
+
+    location /tv {
+        include auth.conf;
+        return 301 https://$host:4002;
+    }
+
+    location /music {
+        include auth.conf;
+        return 301 https://$host:4003;
+    }
+
+    location /media/movies {
+        include auth.conf;
+        autoindex on;
+        autoindex_exact_size off;
+        alias /home/movies;
+    }
+
+    location /media/music {
+        include auth.conf;
+        autoindex on;
+        autoindex_exact_size off;
+        alias /home/music;
+    }
+
+    location /media/tv {
+        include auth.conf;
+        autoindex on;
+        autoindex_exact_size off;
+        alias /home/tv;
+    }
+
+    location /media/other {
+        include auth.conf;
+        autoindex on;
+        autoindex_exact_size off;
+        alias /home/other;
+    }
+
+    location = /self_signed_certificate.crt {
+       include auth.conf;
+       add_header Content-Type application/octet-stream;
+       add_header Content-Disposition "attachment";
+       alias /opt/certs/server.crt;
+   }
+
+    location /static {
+        include auth.conf;
+        alias /opt/homepage/static;
+    }
+
+    location / {
+        include auth.conf;
+        proxy_pass http://localhost:4004;
+    }
+}
+
+
+# TRANSMISSION
+server {
+    listen 4000;
+    error_page 497  https://$host:$server_port$request_uri;
+
+    include ssl.conf;
+    include auth.conf;
+
+    location / {
+        proxy_pass http://localhost:9091;
+        include proxy.conf;
+        proxy_pass_header  X-Transmission-Session-Id;
+    }
+}
+
+
+# COUCHPOTATO
+server {
+    listen 4001;
+    error_page 497  https://$host:$server_port$request_uri;
+
+    include ssl.conf;
+    include auth.conf;
+
+    location / {
+        proxy_pass https://localhost:5050/;
+        include proxy.conf;
+    }
+}
+
+
+# SICKBEARD
+server {
+    listen 4002;
+    error_page 497  https://$host:$server_port$request_uri;
+
+    include ssl.conf;
+    include auth.conf;
+
+    location / {
+        proxy_pass https://localhost:8081/;
+        include proxy.conf;
+    }
+}
+
+
+# HEADPHONES
+server {
+    listen 4003;
+    error_page 497  https://$host:$server_port$request_uri;
+
+    include ssl.conf;
+    include auth.conf;
+
+    location / {
+        proxy_pass https://localhost:8181/;
+        include proxy.conf;
+    }
+}

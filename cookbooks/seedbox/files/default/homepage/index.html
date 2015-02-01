@@ -1,0 +1,30 @@
+<!DOCTYPE html><html><head><base href="/"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Seedbox</title><link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css"><link rel="stylesheet" href="/static/css/app.css"><link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png"><meta name="apple-mobile-web-app-title" content="Seedbox"><link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16"><link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32"><link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192"><meta name="msapplication-TileColor" content="#2b5797"><meta name="msapplication-TileImage" content="/mstile-144x144.png"><meta name="theme-color" content="#ffffff"><meta name="application-name" content="Seedbox"></head><body ng-controller="NavCtrl as nav"><div class="wrap"><div ng-include="'app/view/nav.jade'"></div><div ng-view class="container-fluid full-height"></div></div><div ng-include="'app/view/footer.jade'"></div><div id="loading" ng-include="'app/view/loader.jade'" ng-if="nav.loading" ng-cloak></div><script>/* From Jinja! */
+var jinja = {};
+/* Home - Server Info */
+jinja.cpu                = {{ cpu }};
+jinja.ram                = {{ ram }};
+jinja.bootTime           = {{ bootTime }};
+jinja.usedDisk           = {{ usedDisk }};
+jinja.totalDisk          = {{ totalDisk }};
+jinja.bandwidthPerMonth  = {{ monthlyBW }};
+jinja.bandwidthThisMonth = {{ totalMonth }};
+jinja.allTimeTotalBand   = {{ totalAll }};
+/* Home - Charts */
+jinja.currentTime = '{{ currTime }}';
+jinja.pastDayTx   = {{ hourly_tx }};
+jinja.pastDayRx   = {{ hourly_rx }};
+jinja.pastMonthTx = {{ daily_tx }};
+jinja.pastMonthRx = {{ daily_rx }};
+jinja.pastYearTx  = {{ monthly_tx }};
+jinja.pastYearRx  = {{ monthly_rx }};
+/* Home - Maintenance */
+jinja.transmissionIsOn = {{ transmissionIsOn }};
+jinja.couchpotatoIsOn  = {{ couchpotatoIsOn }};
+jinja.sickbeardIsOn    = {{ sickbeardIsOn }};
+jinja.headphonesIsOn   = {{ headphonesIsOn }};
+/* Streamable Media */
+jinja.tvshows = {{ tv }};
+jinja.music   = {{ music }};
+jinja.movies  = {{ movies }};
+jinja.other   = {{ other }};
+</script><script src="/static/js/cred.js"></script><script src="/static/js/vendor.js"></script><script src="/static/js/app.templates.js"></script><script src="/static/js/app.js"></script></body></html>
