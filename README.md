@@ -83,7 +83,7 @@ other downloads:          https://SERVER_IP/stream/other
 ```
 
 **Installing self signed certificates** <br>
-The first time you access your server from a browser, you'll see something like [this](https://raw.githubusercontent.com/seedbox/deploy/imgs/img/chrome_untrusted.png) indicating that the certificate you are using isn't recognized because you made it yourself. This is totally fine, since you are the only one using it.
+The first time you access your server from a browser, you'll see something like [this](https://raw.githubusercontent.com/seedbox/deploy/imgs/chrome_untrusted.png) indicating that the certificate you are using isn't recognized because you made it yourself. This is totally fine, since you are the only one using it.
 
 You can tell your computer / phone you trust the certificate and it will stop giving you warnings. You can download the certificate from your seedbox's homepage.
 
