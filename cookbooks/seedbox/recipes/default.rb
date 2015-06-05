@@ -152,17 +152,17 @@ end
 
 
 # INSTALL SICKRAGE
-git '/opt/sickbeard' do
+git '/opt/sickrage' do
   repository 'https://github.com/SiCKRAGETV/SickRage.git'
   revision 'master'
   action :checkout
 end
 
-cookbook_file '/etc/default/sickbeard'
+cookbook_file '/etc/default/sickrage'
 
 bash 'set sickbeard to start on boot' do
   user 'root'
-  cwd '/opt/sickbeard'
+  cwd '/opt/sickrage/runscripts'
   code <<-EOH
   cp init.ubuntu /etc/init.d/sickbeard
   chmod +x /etc/init.d/sickbeard
@@ -179,10 +179,10 @@ service 'sickbeard' do
   action :stop
 end
 
-cookbook_file '/opt/sickbeard/sickbeard_config.ini'
+cookbook_file '/opt/sickrage/sickbeard_config.ini'
 bash 'set sickbeard config' do
   user 'root'
-  cwd '/opt/sickbeard'
+  cwd '/opt/sickrage'
   code <<-EOH
   rm config.ini
   mv sickbeard_config.ini config.ini
